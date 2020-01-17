@@ -76,4 +76,14 @@
   }
 
   // Your custom JavaScript goes here
+
+      //  Clone image section begins here
+      var cloneButton = document.querySelector('#cloneImage');
+      cloneButton.addEventListener('click', function () {
+        var item = document.getElementById("imageCloned");
+        var clone = item.cloneNode(true);
+        document.getElementById("imageCloned").parentElement.appendChild(clone)
+      })
+      //  Clone image section ends here
+      
 })();
