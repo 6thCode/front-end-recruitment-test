@@ -1,0 +1,430 @@
+/*------------------------
+    VARIABLES BEGINS  HERE
+-----------------------*/
+
+// color Variables
+$backgroundBlue: rgb(63,81,181);
+$backgroundColor: #f2f2f2;
+$primaryColor: #000;
+$primaryTextColor: #515356;
+$secondaryTextColor: #9B9B9B;
+$buttonColor: #6BD400;
+
+//font-weights
+$font-light: 300;
+$font-normal: 400;
+$font-medium: 500;
+$font-bold: 700;
+
+//font size
+$input-font-size: 16px;
+$font-size-base: 18px;
+$font-events-base: 1.2rem;
+$boxShadow: 0px 4px 20px rgba(141, 135, 135, 0.2);
+$borderRadius: 4px;
+
+
+/*------------------------
+    VARIABLES ENDS  HERE
+-----------------------*/
+
+/*------------------------
+    MIXINS BEGINS  HERE
+-----------------------*/
+@mixin spaceBetween {
+    display: flex;
+    justify-content: space-between;
+}
+
+@mixin centerCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin pseudo($display: block, $pos: absolute, $content: '') {
+    content: $content;
+    display: $display;
+    position: $pos;
+}
+
+@mixin medium-screens() {
+    @media only screen and (max-width: 991px) {
+        @content;
+    }
+}
+
+@mixin hidden {
+	display: none;
+	visibility: hidden;
+}
+
+/*------------------------
+    MIXINS ENDS  HERE
+-----------------------*/
+
+// Checkout form section begins here
+
+.mdl-demo .mdl-layout__tab-panel:not(#overview) {
+    background-color: $backgroundColor;
+}
+
+.checkout-container { padding: 40px; }
+
+.checkout-page-section  {
+    @include centerCenter;
+    max-width: 850px;
+    min-height: 68vh;
+    height: 100%;
+    margin: 0 auto;
+}
+.checkout-section {
+    @include spaceBetween;
+    @include medium-screens()  {
+        flex-wrap: wrap-reverse;
+    }
+    width: 100%;
+        form {
+            max-width: 477px;
+            .form-flex { 
+                @include spaceBetween;
+                .spacing-input { 
+                    border: 7px solid transparent;
+                        @include medium-screens() {
+                            @include hidden;
+                        }
+                }
+                @include medium-screens() {
+                    flex-wrap: wrap;
+                }
+            }
+            .personal-info {
+                display: flex;
+                align-items: center;
+                margin-bottom: .2rem;
+            }
+            .number {
+                @include centerCenter;
+                background: $primaryColor;
+                color: #fff;
+                width: 25px;
+                line-height: 20px;
+                font-weight: $font-medium;
+                border-radius: 50%;
+                height: 25px;
+                margin-bottom: 0;
+                margin-right: .5rem;
+            }
+            h3 {
+                color: $primaryColor;
+                font-size: $font-size-base;
+                line-height: 22px;
+                font-weight: $font-bold;
+            }
+            .icon-lock {
+                position: absolute;
+                right: -25px;
+                top: 27px;
+                width: 15px;
+                height: 15px;
+            }
+            .payment-lock {
+                position: relative;
+            }
+            button {
+                background: $buttonColor;
+                color: #fff;
+                font-size: $font-size-base;
+                line-height: 20px;
+                font-weight: $font-bold;
+                width: 100%;
+                height: 45px;
+                border: 0;
+                border-radius: 4px;
+                cursor: pointer;
+                transition: .3s ease-in-out;
+                outline: none;
+                box-shadow: $boxShadow;
+                margin-bottom: 1rem;
+                &:hover,
+                &:active {
+                box-shadow: $boxShadow;
+                    background: darken($color: $buttonColor, $amount: 10%);
+                }
+            }
+            .content-spacing { padding: 1rem; }
+        }
+        .group{ 
+            position:relative; 
+            margin-bottom:20px; 
+            select {
+                font-size: $input-font-size;
+                padding:20px 10px 5px 13px;
+                display:block;
+                width: 95%;
+                border:none;
+                border: 0px;
+                border-radius: $borderRadius;
+                border: 0;
+                box-shadow: $boxShadow;
+                outline: none;
+            }
+            @include medium-screens() {
+                width: 100%;
+            }
+        }
+
+        input {
+            font-size: $input-font-size;
+            padding: 25px 10px 5px 13px;
+            display:block;
+            width: 95%;
+            border:none;
+            border: 0px;
+            border-radius: $borderRadius;
+            border: 0;
+            box-shadow: $boxShadow;
+            outline: none;
+            @include medium-screens() {
+                width: 100%;
+                padding: 25px 0px 5px 0px;
+
+            }
+        }
+        
+        .input-width { 
+            position: relative;
+            width: 208px; 
+            @include medium-screens() {
+                width: 100%;
+            }
+        }
+
+        .icon {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            top: 18px;
+            right: 15px;
+        }
+
+        /* LABEL ======================================= */
+        label {
+            color: $secondaryTextColor; 
+            font-size: $input-font-size;
+            line-height: 18px;
+            font-weight: $font-normal;
+            position:absolute;
+            pointer-events:none;
+            left:15px;
+            top:15px;
+            transition:0.2s ease all; 
+            -moz-transition:0.2s ease all; 
+            -webkit-transition:0.2s ease all;
+        }
+        
+        /* active state */
+        input:focus ~ label, 
+        input:valid ~ label {
+            top: 4px;
+            font-size: 14px;
+            color: $backgroundBlue;
+        }
+        
+        /* BOTTOM BARS ================================= */
+        .bar 	{ 
+            position:relative; 
+            display:block; 
+            width:100%; 
+            }
+        .bar:before, 
+        .bar:after {
+            @include pseudo($display: block, $pos: absolute, $content: '');
+            height:2px; 
+            width:0;
+            background: $backgroundBlue; 
+            transition:0.2s ease all; 
+            -moz-transition:0.2s ease all; 
+            -webkit-transition:0.2s ease all;
+        }
+        .bar:before { left:50%; }
+        .bar:after { right:50%; }
+        
+        /* active state */
+        input:focus ~ .bar:before, 
+        input:focus ~ .bar:after {
+            width:50%;
+        }
+        
+        /* HIGHLIGHTER ================================== */
+        .highlight {
+            position:absolute;
+            height:60%; 
+            width:100px; 
+            top:25%; 
+            left:0;
+            pointer-events:none;
+            opacity:0.5;
+        }
+        
+        /* active state */
+        input:focus ~ .highlight {
+            -webkit-animation:inputHighlighter 0.3s ease;
+            -moz-animation:inputHighlighter 0.3s ease;
+            animation:inputHighlighter 0.3s ease;
+        }
+        
+        /* ANIMATIONS ================ */
+        @-webkit-keyframes inputHighlighter {
+            from { background: $backgroundBlue; }
+            to 	{ width:0; background:transparent; }
+        }
+        @-moz-keyframes inputHighlighter {
+            from { background: $backgroundBlue; }
+            to 	{ width:0; background:transparent; }
+        }
+        @keyframes inputHighlighter {
+            from { background: $backgroundBlue; }
+            to 	{ width:0; background:transparent; }
+        }
+    
+    
+/* select starting stylings ------------------------------*/
+.select {
+      position: relative;
+      width: 222px;
+      @include medium-screens() {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+  }
+  
+  .select-text {
+      position: relative;
+      background-color: #fff;
+      width: 232px;
+      padding: 20px 10px 10px 14px;
+      font-size: 16px;
+      border-radius: 4px;
+      border: 0;
+      box-shadow: $boxShadow;
+      @include medium-screens() {
+        width: 100%;
+    }
+  }
+  
+  /* Remove focus */
+  .select-text:focus {
+    outline: none;
+    border-bottom: 2px solid $backgroundColor;
+  }
+  
+      /* Use custom arrow */
+  .select .select-text {
+      appearance: none;
+      -webkit-appearance:none;
+        color: $primaryTextColor;
+  }
+  
+  .select:after {
+    @include pseudo($display: block, $pos: absolute, $content: '');
+      top: 22px;
+      right: 4px;
+      /* Styling the down arrow */
+      width: 0;
+      height: 0;
+      padding: 0;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-top: 6px solid $secondaryTextColor;
+    
+      pointer-events: none;
+  }
+  
+  /* LABEL ======================================= */
+  .select-label {
+    color: $secondaryTextColor;
+    background: #fff;
+    font-size: $input-font-size;
+    font-weight: $font-normal;
+    position: absolute;
+    pointer-events: none;
+    padding: 0 5px;
+    left: 10px;
+    top: 17px;
+    transition: 0.2s ease all;
+  }
+  
+  
+  /* active state */
+  .select-text:focus ~ .select-label, 
+  .select-text:valid ~ .select-label {
+      color: $backgroundBlue;
+      top: 5px;
+      transition: 0.2s ease all;
+      font-size: 14px;
+  }
+  
+  .select-text:valid:not(focus) ~ .select-label {
+        color: $primaryTextColor;
+  }
+  .select-text:valid:focus ~ .select-label {
+    color: $backgroundBlue;
+}
+}
+
+// Checkout form section ends here
+
+// Checkout summary section begins here
+
+    .summary-background {
+        background: #fff;
+        box-shadow: $boxShadow;
+        max-width: 310px;
+        width: 100%;
+        height: 100%;
+        padding: 1rem;
+        margin: 5rem 0 0 2rem;
+        border-radius: $borderRadius;
+        &-content {
+            padding: 0 1rem;
+            border: 1px dashed #DCDCDC;
+            border-radius: $borderRadius;
+            h3 {
+                color: $primaryColor;
+                font-size: $font-size-base;
+                line-height: 22px;
+                font-weight: $font-bold;
+            }
+            div {
+                @include spaceBetween;
+                p {
+                    color: $primaryTextColor;
+                    font-size: $input-font-size;
+                    line-height: 20px;
+                    font-weight: $font-normal;
+                }
+                .total {
+                    color: $primaryColor;
+                    font-size: $input-font-size;
+                    font-weight: $font-bold;
+                    line-height: 20px;
+                }
+                .total-amount {
+                    color: $primaryColor;
+                    font-size: 22px;
+                    font-weight: $font-bold;
+                    line-height: 30px;
+                    margin-bottom: 2.5rem;
+                }
+            }
+            hr {
+                border-top: 1px dashed #DCDCDC;
+            }
+        }
+        @include medium-screens() {
+            margin: 0;
+        }
+    }
+
+// Checkout summary section ends here

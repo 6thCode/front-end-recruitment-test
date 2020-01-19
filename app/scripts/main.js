@@ -75,7 +75,7 @@
       });
   }
 
-  // Your custom JavaScript goes here
+      // Your custom JavaScript goes here
 
       //  Clone image section begins here
       var cloneButton = document.querySelector('#cloneImage');
@@ -85,5 +85,102 @@
         document.getElementById("imageCloned").parentElement.appendChild(clone)
       })
       //  Clone image section ends here
-      
+     
+      // List of countries begins here
+      const countriesList = document.getElementById("countries");
+
+      // Test Api for fetching country list
+      fetch("https://restcountries.eu/rest/v2/all")
+      .then(res => res.json())
+      .then(data => initialize(data))
+      .catch(err => console.log("Error:", err));
+
+      function initialize(countries) {
+        let options = "";
+        countries.forEach(country => options+=`<option>${country.name}</option>`);
+        countriesList.innerHTML = options;
+    }
+      // List of countries ends here
+
+    // Credit card, security code and expiration date begins here
+
+  let ccNumberInput = document.querySelector('.creditcard-number-input'),
+    ccNumberPattern = /^\d{0,16}$/g,
+    ccNumberSeparator = " ",
+    ccNumberInputOldValue,
+    ccNumberInputOldCursor,
+
+    ccExpiryInput = document.querySelector('.creditcard-expiry-input'),
+    ccExpiryPattern = /^\d{0,4}$/g,
+    ccExpirySeparator = "/",
+    ccExpiryInputOldValue,
+		
+		mask = (value, limit, separator) => {
+			var output = [];
+			for (let i = 0; i < value.length; i++) {
+				if ( i !== 0 && i % limit === 0) {
+					output.push(separator);
+				}
+				
+				output.push(value[i]);
+			}
+			
+			return output.join("");
+		},
+		unmask = (value) => value.replace(/[^\d]/g, ''),
+		checkSeparator = (position, interval) => Math.floor(position / (interval + 1)),
+		ccNumberInputKeyDownHandler = (e) => {
+			let el = e.target;
+			ccNumberInputOldValue = el.value;
+			ccNumberInputOldCursor = el.selectionEnd;
+		},
+		ccNumberInputInputHandler = (e) => {
+			let el = e.target,
+					newValue = unmask(el.value),
+					newCursorPosition;
+			
+			if ( newValue.match(ccNumberPattern) ) {
+				newValue = mask(newValue, 4, ccNumberSeparator);
+				
+				newCursorPosition = 
+					ccNumberInputOldCursor - checkSeparator(ccNumberInputOldCursor, 4) + 
+					checkSeparator(ccNumberInputOldCursor + (newValue.length - ccNumberInputOldValue.length), 4) + 
+					(unmask(newValue).length - unmask(ccNumberInputOldValue).length);
+				
+				el.value = (newValue !== "") ? newValue : "";
+			} else {
+				el.value = ccNumberInputOldValue;
+				newCursorPosition = ccNumberInputOldCursor;
+			}
+			
+			el.setSelectionRange(newCursorPosition, newCursorPosition);
+			
+		},
+		
+		ccExpiryInputKeyDownHandler = (e) => {
+			let el = e.target;
+			ccExpiryInputOldValue = el.value;
+		},
+		ccExpiryInputInputHandler = (e) => {
+			let el = e.target,
+					newValue = el.value;
+			
+			newValue = unmask(newValue);
+			if ( newValue.match(ccExpiryPattern) ) {
+				newValue = mask(newValue, 2, ccExpirySeparator);
+				el.value = newValue;
+			} else {
+				el.value = ccExpiryInputOldValue;
+			}
+		};
+
+    ccNumberInput.addEventListener('keydown', ccNumberInputKeyDownHandler);
+    ccNumberInput.addEventListener('input', ccNumberInputInputHandler);
+
+    ccExpiryInput.addEventListener('keydown', ccExpiryInputKeyDownHandler);
+    ccExpiryInput.addEventListener('input', ccExpiryInputInputHandler);
+
+    // Credit card, security code and expiration date ends here
+
+
 })();

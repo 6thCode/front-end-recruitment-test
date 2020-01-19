@@ -27,6 +27,7 @@
 import path from 'path';
 import gulp from 'gulp';
 import del from 'del';
+import sass  from 'gulp-sass';
 import runSequence from 'run-sequence';
 import browserSync from 'browser-sync';
 import swPrecache from 'sw-precache';
@@ -259,8 +260,14 @@ gulp.task('generate-service-worker', ['copy-sw-scripts'], () => {
 // ////////////////////////////// SNOWDOG //////////////////////////////////////
 // /////////////////////////////////////////////////////////////////////////////
 
-gulp.task( 'task', [ 'serve' ] )
+gulp.task( 'watch', [ 'serve' ] )
 
+gulp.task('styles', function () { 
+  gulp.src('app/styles/scss/app.scss') .pipe(sass().on('error', sass.logError)).pipe(gulp.dest('app/css')); 
+});
+
+
+gulp.task( 'task', [ 'serve' ] )
 const fs = require('fs');
 
 gulp.task('submodule', () => {
