@@ -31,16 +31,17 @@
   width: 100%;
   /* LABEL ======================================= */
   /* active state */
-  /* BOTTOM BARS ================================= */
-  /* active state */
-  /* HIGHLIGHTER ================================== */
-  /* active state */
-  /* ANIMATIONS ================ */
   /* select starting stylings ------------------------------*/
   /* Remove focus */
   /* Use custom arrow */
   /* LABEL ======================================= */
   /* active state */ }
+  .checkout-section ul {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 5px; }
+    .checkout-section ul li {
+      color: red; }
   @media only screen and (max-width: 991px) {
     .checkout-section {
       flex-wrap: wrap-reverse; } }
@@ -138,14 +139,14 @@
     outline: none; }
     @media only screen and (max-width: 991px) {
       .checkout-section input {
-        width: 100%;
-        padding: 25px 0px 5px 0px; } }
+        width: 95%;
+        padding: 25px 0px 5px 16px; } }
   .checkout-section .input-width {
     position: relative;
     width: 208px; }
     @media only screen and (max-width: 991px) {
       .checkout-section .input-width {
-        width: 100%; } }
+        width: 95%; } }
   .checkout-section .icon {
     position: absolute;
     width: 15px;
@@ -169,61 +170,6 @@
     top: 4px;
     font-size: 14px;
     color: #3f51b5; }
-  .checkout-section .bar {
-    position: relative;
-    display: block;
-    width: 100%; }
-  .checkout-section .bar:before,
-  .checkout-section .bar:after {
-    content: "";
-    display: block;
-    position: absolute;
-    height: 2px;
-    width: 0;
-    background: #3f51b5;
-    transition: 0.2s ease all;
-    -moz-transition: 0.2s ease all;
-    -webkit-transition: 0.2s ease all; }
-  .checkout-section .bar:before {
-    left: 50%; }
-  .checkout-section .bar:after {
-    right: 50%; }
-  .checkout-section input:focus ~ .bar:before,
-  .checkout-section input:focus ~ .bar:after {
-    width: 50%; }
-  .checkout-section .highlight {
-    position: absolute;
-    height: 60%;
-    width: 100px;
-    top: 25%;
-    left: 0;
-    pointer-events: none;
-    opacity: 0.5; }
-  .checkout-section input:focus ~ .highlight {
-    -webkit-animation: inputHighlighter 0.3s ease;
-    -moz-animation: inputHighlighter 0.3s ease;
-    animation: inputHighlighter 0.3s ease; }
-
-@-webkit-keyframes inputHighlighter {
-  from {
-    background: #3f51b5; }
-  to {
-    width: 0;
-    background: transparent; } }
-
-@-moz-keyframes inputHighlighter {
-  from {
-    background: #3f51b5; }
-  to {
-    width: 0;
-    background: transparent; } }
-
-@keyframes inputHighlighter {
-  from {
-    background: #3f51b5; }
-  to {
-    width: 0;
-    background: transparent; } }
   .checkout-section .select {
     position: relative;
     width: 222px; }
@@ -282,7 +228,8 @@
     transition: 0.2s ease all;
     font-size: 14px; }
   .checkout-section .select-text:valid:not(focus) ~ .select-label {
-    color: #515356; }
+    color: #515356;
+    background: transparent; }
   .checkout-section .select-text:valid:focus ~ .select-label {
     color: #3f51b5; }
 
@@ -327,4 +274,5 @@
       border-top: 1px dashed #DCDCDC; }
   @media only screen and (max-width: 991px) {
     .summary-background {
-      margin: 0; } }
+      margin: 0;
+      max-width: 100%; } }

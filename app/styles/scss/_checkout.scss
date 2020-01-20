@@ -23,7 +23,6 @@ $font-events-base: 1.2rem;
 $boxShadow: 0px 4px 20px rgba(141, 135, 135, 0.2);
 $borderRadius: 4px;
 
-
 /*------------------------
     VARIABLES ENDS  HERE
 -----------------------*/
@@ -79,6 +78,14 @@ $borderRadius: 4px;
     margin: 0 auto;
 }
 .checkout-section {
+    ul {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 5px;
+        li {
+            color: red;
+        }
+    }
     @include spaceBetween;
     @include medium-screens()  {
         flex-wrap: wrap-reverse;
@@ -186,8 +193,8 @@ $borderRadius: 4px;
             box-shadow: $boxShadow;
             outline: none;
             @include medium-screens() {
-                width: 100%;
-                padding: 25px 0px 5px 0px;
+                width: 95%;
+                padding: 25px 0px 5px 16px;
 
             }
         }
@@ -196,7 +203,7 @@ $borderRadius: 4px;
             position: relative;
             width: 208px; 
             @include medium-screens() {
-                width: 100%;
+                width: 95%;
             }
         }
 
@@ -230,65 +237,7 @@ $borderRadius: 4px;
             font-size: 14px;
             color: $backgroundBlue;
         }
-        
-        /* BOTTOM BARS ================================= */
-        .bar 	{ 
-            position:relative; 
-            display:block; 
-            width:100%; 
-            }
-        .bar:before, 
-        .bar:after {
-            @include pseudo($display: block, $pos: absolute, $content: '');
-            height:2px; 
-            width:0;
-            background: $backgroundBlue; 
-            transition:0.2s ease all; 
-            -moz-transition:0.2s ease all; 
-            -webkit-transition:0.2s ease all;
-        }
-        .bar:before { left:50%; }
-        .bar:after { right:50%; }
-        
-        /* active state */
-        input:focus ~ .bar:before, 
-        input:focus ~ .bar:after {
-            width:50%;
-        }
-        
-        /* HIGHLIGHTER ================================== */
-        .highlight {
-            position:absolute;
-            height:60%; 
-            width:100px; 
-            top:25%; 
-            left:0;
-            pointer-events:none;
-            opacity:0.5;
-        }
-        
-        /* active state */
-        input:focus ~ .highlight {
-            -webkit-animation:inputHighlighter 0.3s ease;
-            -moz-animation:inputHighlighter 0.3s ease;
-            animation:inputHighlighter 0.3s ease;
-        }
-        
-        /* ANIMATIONS ================ */
-        @-webkit-keyframes inputHighlighter {
-            from { background: $backgroundBlue; }
-            to 	{ width:0; background:transparent; }
-        }
-        @-moz-keyframes inputHighlighter {
-            from { background: $backgroundBlue; }
-            to 	{ width:0; background:transparent; }
-        }
-        @keyframes inputHighlighter {
-            from { background: $backgroundBlue; }
-            to 	{ width:0; background:transparent; }
-        }
-    
-    
+  
 /* select starting stylings ------------------------------*/
 .select {
       position: relative;
@@ -367,6 +316,7 @@ $borderRadius: 4px;
   
   .select-text:valid:not(focus) ~ .select-label {
         color: $primaryTextColor;
+        background: transparent;
   }
   .select-text:valid:focus ~ .select-label {
     color: $backgroundBlue;
@@ -424,6 +374,7 @@ $borderRadius: 4px;
         }
         @include medium-screens() {
             margin: 0;
+            max-width: 100%;
         }
     }
 

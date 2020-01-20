@@ -85,6 +85,7 @@
         document.getElementById("imageCloned").parentElement.appendChild(clone)
       })
       //  Clone image section ends here
+
      
       // List of countries begins here
       const countriesList = document.getElementById("countries");
@@ -182,5 +183,16 @@
 
     // Credit card, security code and expiration date ends here
 
+    //  Form validation begins here
+    $('#formBtn').parsley();
+    $("#formBtn").on('submit', function(event) {
+      $(this).parsley().validate();
+      if ($(this).parsley().isValid()) {
+          swal("Good job!", "Orders Placed", "success");
+      }
+      event.preventDefault();
+  });
 
 })();
+
+
